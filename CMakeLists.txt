@@ -27,4 +27,27 @@ add_executable(EjerciciosListas main.cpp
         ListaOpePila.cpp
         ListaOpePila.h
         NodoOpePila.cpp
-        NodoOpePila.h)
+        NodoOpePila.h
+        ListaOpeCola.cpp
+        ListaOpeCola.h
+        NodoOpeCola.cpp
+        NodoOpeCola.h
+        NodoDuplicados.cpp
+        NodoDuplicados.h
+        ListaDuplicados.cpp
+        ListaDuplicados.h
+        NodoOrdenada.cpp
+        NodoOrdenada.h
+        ListaOrdenada.cpp
+        ListaOrdenada.h
+        NodoRango.cpp
+        NodoRango.h
+        ListaRango.cpp
+        ListaRango.h
+        Persona.cpp
+        Persona.h
+        ListaPersonas.cpp
+        ListaPersonas.h
+        ListaEstudiantes.cpp
+        Estudiante.h
+        ListaEstudiantes.h)
