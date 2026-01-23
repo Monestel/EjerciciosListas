@@ -11,6 +11,20 @@
 #include "ListaRango.h"
 #include "ListaPersonas.h"
 #include "ListaEstudiantes.h"
+#include "ListaProductos.h"
+#include "ListaBiblioteca.h"
+#include "ListaCarros.h"
+#include "ListaEmpleados.h"
+#include "ListaFacturas.h"
+#include "ListaReservas.h"
+#include "ListaCursos.h"
+#include "ListaTransacciones.h"
+#include "ListaInvertir.h"
+#include "ListaComparar.h"
+#include "ListaConcatenar.h"
+#include "ListaDividir.h"
+#include "ListaRotar.h"
+
 
 using namespace std;
 
@@ -270,6 +284,8 @@ int main() {
 
 
 
+    cout << "EJERCICIO 11" << endl;
+
     ListaPersonas listaP;
 
     listaP.agregarPersona(new Persona("Ana", 25, "F"));
@@ -299,6 +315,8 @@ int main() {
 
 
 
+    cout << "EJERCICIO 12" << endl;
+
     ListaEstudiantes listaEst;
 
     listaEst.agregarEstudiante(new Estudiante("Ana", "A01", 85));
@@ -322,6 +340,365 @@ int main() {
     Estudiante* buscado = listaEst.buscarPorCarnet("A02");
     if (buscado != nullptr)
         cout << buscado->getNombre() << endl;
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 13" << endl;
+
+    ListaProductos listaProd;
+
+    listaProd.agregarProducto(new Producto("P01", "Teclado", 25.5, 10));
+    listaProd.agregarProducto(new Producto("P02", "Mouse", 15.0, 5));
+    listaProd.agregarProducto(new Producto("P03", "Monitor", 180.0, 2));
+    listaProd.agregarProducto(new Producto("P04", "USB", 8.0, 50));
+
+    cout << listaProd.valorTotalInventario() << endl;
+    cout << listaProd.gananciaTotal() << endl;
+
+    Producto* caro = listaProd.productoMasCaro();
+    if (caro != nullptr)
+        cout << caro->getNombre() << endl;
+
+    cout << listaProd.productosConStockBajo(6) << endl;
+
+    cout << listaProd.actualizarStock("P02", 20) << endl;
+    cout << listaProd.buscarPorCodigo("P02")->getStock() << endl;
+    cout << endl;
+
+    cout << "EJERCICIO 14" << endl;
+
+    ListaBiblioteca biblioteca;
+
+    biblioteca.agregarLibro(Libro("L01", "Cien Años", "Garcia", 1967, true));
+    biblioteca.agregarLibro(Libro("L02", "El Quijote", "Cervantes", 1605, true));
+    biblioteca.agregarLibro(Libro("L03", "Otra Historia", "Garcia", 2001, true));
+    biblioteca.agregarLibro(Libro("L04", "Libro X", "Perez", 2010, false));
+
+    cout << biblioteca.contarDisponibles() << endl;
+    cout << biblioteca.contarLibrosPorAutor("Garcia") << endl;
+
+    biblioteca.prestarLibro("L01");
+    cout << biblioteca.contarDisponibles() << endl;
+
+    biblioteca.devolverLibro("L04");
+    cout << biblioteca.contarDisponibles() << endl;
+
+    Libro* encontrado = biblioteca.buscarPorTitulo("El Quijote");
+    if (encontrado != nullptr)
+        cout << encontrado->getAutor() << endl;
+
+    ListaBiblioteca* autorGarcia = biblioteca.librosPorAutor("Garcia");
+    cout << autorGarcia->contarLibrosPorAutor("Garcia") << endl;
+
+    delete autorGarcia;
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 15" << endl;
+
+    ListaCarros listaCarros;
+
+    listaCarros.insertarOrdenado(Carro("P01", "Toyota", 2010, 8500));
+    listaCarros.insertarOrdenado(Carro("P02", "Honda", 2015, 10500));
+    listaCarros.insertarOrdenado(Carro("P03", "Toyota", 2005, 6000));
+    listaCarros.insertarOrdenado(Carro("P04", "Nissan", 2020, 15000));
+
+    cout << listaCarros.contarPorMarca("Toyota") << endl;
+
+    Carro* viejo = listaCarros.carroMasViejo();
+    if (viejo != nullptr)
+        cout << viejo->getPlaca() << endl;
+
+    Carro* nuevo = listaCarros.carroMasNuevo();
+    if (nuevo != nullptr)
+        cout << nuevo->getPlaca() << endl;
+
+    cout << listaCarros.precioPromedio() << endl;
+
+    listaCarros.eliminarPorPlaca("P02");
+    cout << listaCarros.precioPromedio() << endl;
+
+    Carro* buscados = listaCarros.buscarPorPlaca("P04");
+    if (buscados != nullptr)
+        cout << buscados->getMarca() << endl;
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 16" << endl;
+
+    ListaEmpleados listaEmp;
+
+    listaEmp.agregarEmpleado(Empleado(1, "Ana", 1200, "IT"));
+    listaEmp.agregarEmpleado(Empleado(2, "Luis", 950, "HR"));
+    listaEmp.agregarEmpleado(Empleado(3, "Maria", 1500, "IT"));
+    listaEmp.agregarEmpleado(Empleado(4, "Pedro", 1100, "Ventas"));
+
+    cout << listaEmp.salarioTotal() << endl;
+    cout << listaEmp.salarioPromedio() << endl;
+    cout << listaEmp.contarPorDepartamento("IT") << endl;
+
+    Empleado* mejorEmp = listaEmp.empleadoMejorPagado();
+    if (mejorEmp != nullptr)
+        cout << mejorEmp->getNombre() << endl;
+
+    Empleado* buscadoE = listaEmp.buscarPorId(2);
+    if (buscadoE != nullptr)
+        cout << buscadoE->getDepartamento() << endl;
+
+    ListaEmpleados* it = listaEmp.empleadosPorDepartamento("IT");
+    cout << it->contarPorDepartamento("IT") << endl;
+
+    delete it;
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 17" << endl;
+
+    ListaFacturas listaFac;
+
+    listaFac.agregarFactura(Factura(1001, "Ana", 250.5, "2024-01-10"));
+    listaFac.agregarFactura(Factura(1002, "Luis", 120.0, "2024-01-11"));
+    listaFac.agregarFactura(Factura(1003, "Ana", 300.0, "2024-01-12"));
+    listaFac.agregarFactura(Factura(1004, "Pedro", 450.75, "2024-01-13"));
+
+    cout << listaFac.montoTotal() << endl;
+    cout << listaFac.montoPromedio() << endl;
+    cout << listaFac.contarPorCliente("Ana") << endl;
+    cout << listaFac.totalPorCliente("Ana") << endl;
+
+    Factura* facMayor = listaFac.facturaMayor();
+    if (facMayor != nullptr)
+        cout << facMayor->getNumero() << endl;
+
+    Factura* facBuscada = listaFac.buscarPorNumero(1002);
+    if (facBuscada != nullptr)
+        cout << facBuscada->getCliente() << endl;
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 18" << endl;
+
+    ListaReservas listaRes;
+
+    listaRes.agregarReserva(Reserva(1, "Ana", "2024-02-01", 300, "confirmada"));
+    listaRes.agregarReserva(Reserva(2, "Luis", "2024-02-02", 150, "cancelada"));
+    listaRes.agregarReserva(Reserva(3, "Ana", "2024-02-03", 450, "confirmada"));
+    listaRes.agregarReserva(Reserva(4, "Pedro", "2024-02-04", 200, "pendiente"));
+
+    cout << listaRes.montoTotalReservas() << endl;
+    cout << listaRes.contarConfirmadas() << endl;
+    cout << listaRes.contarPorEstado("cancelada") << endl;
+
+    listaRes.cambiarEstado(4, "confirmada");
+    cout << listaRes.contarConfirmadas() << endl;
+
+    Reserva* resBuscada = listaRes.buscarPorId(2);
+    if (resBuscada != nullptr)
+        cout << resBuscada->getCliente() << endl;
+
+    ListaReservas* anaRes = listaRes.reservasPorCliente("Ana");
+    cout << anaRes->contarConfirmadas() << endl;
+
+    delete anaRes;
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 19" << endl;
+
+    ListaCursos listaCur;
+
+    listaCur.agregarCurso(Curso("INF101", "Programacion", 4, "Perez"));
+    listaCur.agregarCurso(Curso("MAT201", "Calculo", 3, "Gomez"));
+    listaCur.agregarCurso(Curso("INF202", "Estructuras", 5, "Perez"));
+    listaCur.agregarCurso(Curso("HIS100", "Historia", 2, "Lopez"));
+
+    cout << listaCur.totalCreditos() << endl;
+    cout << listaCur.promedioCreditos() << endl;
+    cout << listaCur.contarPorProfesor("Perez") << endl;
+
+    Curso* curMayor = listaCur.cursoConMasCreditos();
+    if (curMayor != nullptr)
+        cout << curMayor->getCodigo() << endl;
+
+    Curso* curBuscado = listaCur.buscarPorCodigo("MAT201");
+    if (curBuscado != nullptr)
+        cout << curBuscado->getNombre() << endl;
+
+    ListaCursos* curPerez = listaCur.cursosPorProfesor("Perez");
+    cout << curPerez->totalCreditos() << endl;
+
+    delete curPerez;
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 20" << endl;
+
+    ListaTransacciones listaT;
+
+    listaT.agregarTransaccion(Transaccion(1, "Ingreso", 500.0, "2024-01-10"));
+    listaT.agregarTransaccion(Transaccion(2, "Gasto", 200.0, "2024-01-11"));
+    listaT.agregarTransaccion(Transaccion(3, "Ingreso", 800.0, "2024-01-12"));
+    listaT.agregarTransaccion(Transaccion(4, "Gasto", 150.0, "2024-01-13"));
+
+    cout << listaT.montoTotal() << endl;
+    cout << listaT.montoPorTipo("Ingreso") << endl;
+    cout << listaT.contarPorTipo("Gasto") << endl;
+
+    Transaccion* mayorT = listaT.transaccionMayor();
+    if (mayorT != nullptr)
+        cout << mayorT->getId() << endl;
+
+    Transaccion* buscadaT = listaT.buscarPorId(2);
+    if (buscadaT != nullptr)
+        cout << buscadaT->getMonto() << endl;
+
+    ListaTransacciones* ingresos = listaT.transaccionesPorTipo("Ingreso");
+    cout << ingresos->montoTotal() << endl;
+
+    delete ingresos;
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 21" << endl;
+
+    ListaInvertir listaInv;
+
+    listaInv.agregarFinal(1);
+    listaInv.agregarFinal(2);
+    listaInv.agregarFinal(3);
+    listaInv.agregarFinal(2);
+    listaInv.agregarFinal(1);
+
+    cout << listaInv.esPalindromo() << endl;
+
+    ListaInvertir* inv = listaInv.obtenerInversa();
+    cout << inv->esPalindromo() << endl;
+
+    listaInv.invertirRango(1, 3);
+    cout << listaInv.esPalindromo() << endl;
+
+    listaInv.invertir();
+
+    delete inv;
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 22" << endl;
+
+    ListaComparar l1;
+    ListaComparar l2;
+
+    l1.agregarFinal(1);
+    l1.agregarFinal(2);
+    l1.agregarFinal(3);
+    l1.agregarFinal(4);
+
+    l2.agregarFinal(3);
+    l2.agregarFinal(4);
+    l2.agregarFinal(5);
+
+    cout << l1.sonIguales(&l2) << endl;
+    cout << l1.contiene(&l2) << endl;
+
+    ListaComparar* dif = l1.diferencia(&l2);
+    ListaComparar* inter = l1.interseccion(&l2);
+
+    cout << dif->contiene(inter) << endl;
+
+    delete dif;
+    delete inter;
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 23" << endl;
+
+    ListaConcatenar lisCon1;
+    ListaConcatenar lisCon2;
+
+    lisCon1.agregarFinal(1);
+    lisCon1.agregarFinal(2);
+    lisCon1.agregarFinal(3);
+
+    lisCon2.agregarFinal(4);
+    lisCon2.agregarFinal(5);
+    lisCon2.agregarFinal(6);
+
+    lisCon1.concatenar(&lisCon2);
+
+    ListaConcatenar* unida = lisCon1.unir(&lisCon2);
+
+    ListaConcatenar l3;
+    l3.agregarFinal(9);
+    l3.agregarFinal(8);
+
+    lisCon1.insertarLista(2, &l3);
+
+    delete unida;
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 24" << endl;
+
+    ListaDividir listaD;
+
+    listaD.agregarFinal(1);
+    listaD.agregarFinal(2);
+    listaD.agregarFinal(3);
+    listaD.agregarFinal(4);
+    listaD.agregarFinal(5);
+    listaD.agregarFinal(6);
+
+    ListaDividir* segunda = listaD.dividir(3);
+
+    ListaDividir* primeraMitad = listaD.obtenerPrimeraMitad();
+    ListaDividir* segundaMitad = listaD.obtenerSegundaMitad();
+
+    listaD.eliminarMitad();
+
+    delete segunda;
+    delete primeraMitad;
+    delete segundaMitad;
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 25" << endl;
+
+    ListaRotar listaR;
+
+    listaR.agregarFinal(1);
+    listaR.agregarFinal(2);
+    listaR.agregarFinal(3);
+    listaR.agregarFinal(4);
+    listaR.agregarFinal(5);
+
+    listaR.rotarIzquierda(2);
+    listaR.rotarDerecha(1);
+    listaR.rotarHasta(3);
+
+    cout << endl;
+
 
 
 
