@@ -50,4 +50,5 @@ add_executable(EjerciciosListas main.cpp
         ListaPersonas.h
         ListaEstudiantes.cpp
         Estudiante.h
-        ListaEstudiantes.h)
+        ListaEstudiantes.h
+        Estudiante.cpp)

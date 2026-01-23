@@ -306,21 +306,22 @@ int main() {
     listaEst.agregarEstudiante(new Estudiante("Maria", "A03", 92));
     listaEst.agregarEstudiante(new Estudiante("Pedro", "A04", 60));
 
-    cout << "Promedio grupo: " << listaEst.promedioGrupo() << endl;
-    cout << "Aprobados: " << listaEst.contarAprobados(70) << endl;
-    cout << "Reprobados: " << listaEst.contarReprobados(70) << endl;
+    cout << listaEst.promedioGrupo() << endl;
+
+    cout << listaEst.contarAprobados(70) << endl;
+    cout << listaEst.contarReprobados(70) << endl;
 
     Estudiante* mejor = listaEst.mejorEstudiante();
     if (mejor != nullptr)
-        cout << "Mejor estudiante: " << mejor->getNombre() << endl;
+        cout << mejor->getNombre() << endl;
 
     listaEst.aplicarCurva(10);
 
-    cout << "Promedio grupo con curva: " << listaEst.promedioGrupo() << endl;
+    cout << listaEst.promedioGrupo() << endl;
 
     Estudiante* buscado = listaEst.buscarPorCarnet("A02");
     if (buscado != nullptr)
-        cout << "Encontrado: " << buscado->getNombre() << endl;
+        cout << buscado->getNombre() << endl;
 
 
 

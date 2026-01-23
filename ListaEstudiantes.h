@@ -1,4 +1,4 @@
-//Ejercicio 12
+// Ejercicio 12
 
 #ifndef LISTAESTUDIANTES_H
 #define LISTAESTUDIANTES_H
@@ -9,22 +9,18 @@ class ListaEstudiantes {
 
 private:
 
-    class Nodo {
-    public:
+    struct Nodo {
         Estudiante* estudiante;
         Nodo* sig;
-        Nodo(Estudiante* e) {
-            estudiante = e;
-            sig = nullptr;
-        }
     };
 
-    Nodo* primero;
-    int cantidad;
+    Nodo* cabeza;
+    int contador;
 
 public:
     ListaEstudiantes();
     ~ListaEstudiantes();
+
     void agregarEstudiante(Estudiante* e);
     Estudiante* buscarPorCarnet(string carnet);
     double promedioGrupo();
@@ -34,4 +30,4 @@ public:
     void aplicarCurva(double porcentaje);
 };
 
-#endif //EJERCICIOSLISTAS_LISTAESTUDIANTE_H
+#endif //EJERCICIOSLISTAS_LISTAESTUDIANTES_H
