@@ -178,6 +178,10 @@ Estudiante* ListaEstudiantes::mejorEstudiantePorCarrera(string carrera) {
     return mejor;
 }
 
+int ListaEstudiantes::getContador() {
+    return contador;
+}
+
 
 
 

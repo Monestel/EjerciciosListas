@@ -92,7 +92,7 @@ int main() {
     LisEnt.eliminaFinal();
 
     cout << LisEnt.toString() << endl;
-
+    cout << endl;
 
 
     cout << "EJERCICIO 3" << endl;
