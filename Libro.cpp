@@ -1,18 +1,30 @@
-// Ejercicio 14
+//Ejercicio 14 y 31
 
 #include "Libro.h"
 
-Libro::Libro() {
+Libro::Libro(string isbn, string titulo, string autor, int anio, string categoria, double precio) {
+    this->isbn = isbn;
+    this->titulo = titulo;
+    this->autor = autor;
+    this->anio = anio;
+    this->categoria = categoria;
+    this->precio = precio;
     disponible = true;
+    usuario = "";
 }
 
+//Ejercicio 14 y 31
 Libro::Libro(string isbn, string titulo, string autor, int anio, bool disponible) {
     this->isbn = isbn;
     this->titulo = titulo;
     this->autor = autor;
     this->anio = anio;
     this->disponible = disponible;
+    categoria = "";
+    usuario = "";
+    precio = 0;
 }
+
 
 string Libro::getISBN() {
     return isbn;
@@ -30,10 +42,28 @@ int Libro::getAnio() {
     return anio;
 }
 
-bool Libro::getDisponible() {
+bool Libro::estaDisponible() {
     return disponible;
 }
 
-void Libro::setDisponible(bool disponible) {
-    this->disponible = disponible;
+string Libro::getCategoria() {
+    return categoria;
+}
+
+string Libro::getUsuario() {
+    return usuario;
+}
+
+double Libro::getPrecio() {
+    return precio;
+}
+
+void Libro::prestar(string usuario) {
+    disponible = false;
+    this->usuario = usuario;
+}
+
+void Libro::devolver() {
+    disponible = true;
+    usuario = "";
 }

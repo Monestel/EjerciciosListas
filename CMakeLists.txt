@@ -95,4 +95,12 @@ add_executable(EjerciciosListas main.cpp
         ListaRotar.cpp
         ListaRotar.h
         ListaOrdenar.cpp
-        ListaOrdenar.h)
+        ListaOrdenar.h
+        ListaFiltrar.cpp
+        ListaFiltrar.h
+        ListaEstadisticas.cpp
+        ListaEstadisticas.h
+        ListaHistorial.cpp
+        ListaHistorial.h
+        ListaCircular.cpp
+        ListaCircular.h)

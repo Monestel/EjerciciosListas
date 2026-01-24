@@ -1,4 +1,4 @@
-// Ejercicio 14
+// Ejercicio 14 y 31
 
 #ifndef LISTABIBLIOTECA_H
 #define LISTABIBLIOTECA_H
@@ -10,7 +10,7 @@ class ListaBiblioteca {
 private:
 
     struct Nodo {
-        Libro libro;
+        Libro* libro;
         Nodo* sig;
     };
 
@@ -20,14 +20,26 @@ public:
     ListaBiblioteca();
     ~ListaBiblioteca();
 
-    void agregarLibro(Libro l);
+    void agregarLibro(Libro* l);
     Libro* buscarPorISBN(string isbn);
     Libro* buscarPorTitulo(string titulo);
     int contarLibrosPorAutor(string autor);
-    int contarDisponibles();
-    bool prestarLibro(string isbn);
+
+    bool prestarLibro(string isbn, string usuario);
     bool devolverLibro(string isbn);
+    bool prestarLibro(string isbn);
+
+
+    int contarDisponibles();
+    int contarPrestados();
+
+    ListaBiblioteca* librosPorCategoria(string categoria);
     ListaBiblioteca* librosPorAutor(string autor);
+
+    double valorTotalBiblioteca();
+    Libro* libroMasAntiguo();
+    Libro* libroMasReciente();
+
 };
 
 #endif //EJERCICIOSLISTAS_LISTABIBLIOTECA_H

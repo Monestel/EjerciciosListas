@@ -24,6 +24,11 @@
 #include "ListaConcatenar.h"
 #include "ListaDividir.h"
 #include "ListaRotar.h"
+#include "ListaOrdenar.h"
+#include "ListaFiltrar.h"
+#include "ListaEstadisticas.h"
+#include "ListaHistorial.h"
+#include "ListaCircular.h"
 
 
 using namespace std;
@@ -370,10 +375,10 @@ int main() {
 
     ListaBiblioteca biblioteca;
 
-    biblioteca.agregarLibro(Libro("L01", "Cien Años", "Garcia", 1967, true));
-    biblioteca.agregarLibro(Libro("L02", "El Quijote", "Cervantes", 1605, true));
-    biblioteca.agregarLibro(Libro("L03", "Otra Historia", "Garcia", 2001, true));
-    biblioteca.agregarLibro(Libro("L04", "Libro X", "Perez", 2010, false));
+    biblioteca.agregarLibro(new Libro("L01", "Cien Años", "Garcia", 1967, true));
+    biblioteca.agregarLibro(new Libro("L02", "El Quijote", "Cervantes", 1605, true));
+    biblioteca.agregarLibro(new Libro("L03", "Otra Historia", "Garcia", 2001, true));
+    biblioteca.agregarLibro(new Libro("L04", "Libro X", "Perez", 2010, false));
 
     cout << biblioteca.contarDisponibles() << endl;
     cout << biblioteca.contarLibrosPorAutor("Garcia") << endl;
@@ -698,6 +703,150 @@ int main() {
     listaR.rotarHasta(3);
 
     cout << endl;
+
+
+
+    cout << "EJERCICIO 26" << endl;
+
+    ListaOrdenar listaO;
+
+    listaO.agregarFinal(5);
+    listaO.agregarFinal(3);
+    listaO.agregarFinal(1);
+    listaO.agregarFinal(4);
+    listaO.agregarFinal(2);
+
+    cout << listaO.estaOrdenada() << endl;
+
+    listaO.ordenarBurbuja();
+    cout << listaO.estaOrdenada() << endl;
+
+    listaO.agregarFinal(0);
+    listaO.ordenarSeleccion();
+    cout << listaO.estaOrdenada() << endl;
+
+    listaO.agregarFinal(6);
+    listaO.ordenarInsercion();
+    cout << listaO.estaOrdenada() << endl;
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 27" << endl;
+
+    ListaFiltrar listaF;
+
+    listaF.agregarFinal(1);
+    listaF.agregarFinal(2);
+    listaF.agregarFinal(3);
+    listaF.agregarFinal(4);
+    listaF.agregarFinal(5);
+    listaF.agregarFinal(6);
+
+    ListaFiltrar* pares = listaF.filtrarPares();
+    ListaFiltrar* impares = listaF.filtrarImpares();
+    ListaFiltrar* mayores = listaF.filtrarMayores(3);
+    ListaFiltrar* menores = listaF.filtrarMenores(4);
+
+    delete pares;
+    delete impares;
+    delete mayores;
+    delete menores;
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 28" << endl;
+
+    ListaEstadisticas listaE;
+
+    listaE.agregarFinal(1);
+    listaE.agregarFinal(2);
+    listaE.agregarFinal(2);
+    listaE.agregarFinal(3);
+    listaE.agregarFinal(4);
+    listaE.agregarFinal(5);
+
+    cout << listaE.moda() << endl;
+    cout << listaE.mediana() << endl;
+    cout << listaE.desviacionEstandar() << endl;
+    cout << listaE.rango() << endl;
+
+    ListaEstadisticas* top = listaE.obtenerTopN(3);
+
+    delete top;
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 29" << endl;
+
+    ListaHistorial lh;
+
+    lh.agregarFinal(10);
+    lh.agregarFinal(20);
+    lh.agregarFinal(30);
+
+    lh.deshacer();
+    lh.deshacer();
+    lh.rehacer();
+
+    cout << lh.historialDisponible() << endl;
+
+    lh.limpiarHistorial();
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 30" << endl;
+
+    ListaCircular lc;
+
+    lc.agregar(5);
+    lc.agregar(10);
+    lc.agregar(15);
+
+    lc.recorrerCompleto();
+
+    cout << lc.contarElementos() << endl;
+    cout << lc.buscar(10) << endl;
+
+    lc.eliminar(10);
+    lc.recorrerCompleto();
+
+    cout << endl;
+
+
+
+    cout << "EJERCICIO 31" << endl;
+
+    ListaBiblioteca biblio;
+
+    biblio.agregarLibro(new Libro("L01","C++","Bjarne",1998,"Programacion",50));
+    biblio.agregarLibro(new Libro("L02","Java","Gosling",2005,"Programacion",45));
+    biblio.agregarLibro(new Libro("L03","Historia","Perez",1980,"Historia",30));
+
+    biblio.prestarLibro("L01","Juan");
+
+    cout << biblio.contarDisponibles() << endl;
+    cout << biblio.contarPrestados() << endl;
+
+    Libro* ant = biblio.libroMasAntiguo();
+    if (ant != nullptr)
+        cout << ant->getTitulo() << endl;
+
+    Libro* rec = biblio.libroMasReciente();
+    if (rec != nullptr)
+        cout << rec->getTitulo() << endl;
+
+    cout << biblio.valorTotalBiblioteca() << endl;
+
+    ListaBiblioteca* prog = biblio.librosPorCategoria("Programacion");
+    delete prog;
 
 
 
