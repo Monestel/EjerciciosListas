@@ -847,7 +847,62 @@ int main() {
 
     ListaBiblioteca* prog = biblio.librosPorCategoria("Programacion");
     delete prog;
+    cout << endl;
 
+
+
+    cout << "EJERCICIO 32" << endl;
+
+    ListaProductos invent;
+
+    invent.agregarProducto(new Producto("P01","Arroz",1.5,10,"Alimentos","ProveedorA"));
+    invent.agregarProducto(new Producto("P02","Azucar",1.2,0,"Alimentos","ProveedorA"));
+    invent.agregarProducto(new Producto("P03","Jabon",2.0,5,"Limpieza","ProveedorB"));
+
+    invent.venderProducto("P01",3);
+    invent.venderProducto("P01",2);
+    invent.venderProducto("P03",1);
+
+    cout << invent.productosAgotados() << endl;
+    cout << invent.valorTotalInventario() << endl;
+
+    Producto* masVend = invent.productoMasVendido();
+    if (masVend != nullptr)
+        cout << masVend->getNombre() << endl;
+
+    ListaProductos* alim = invent.productosPorCategoria("Alimentos");
+    delete alim;
+    cout << endl;
+
+
+
+
+    cout << "EJERCICIO 33" << endl;
+
+    ListaEstudiantes listaE33;
+
+    listaE33.agregarEstudiante(new Estudiante("E01", "Ana", 20, 85, "Ingenieria", 3));
+    listaE33.agregarEstudiante(new Estudiante("E02", "Luis", 22, 70, "Ingenieria", 5));
+    listaE33.agregarEstudiante(new Estudiante("E03", "Maria", 21, 90, "Derecho", 4));
+    listaE33.agregarEstudiante(new Estudiante("E04", "Pedro", 23, 60, "Ingenieria", 6));
+    listaE33.agregarEstudiante(new Estudiante("E05", "Sofia", 19, 95, "Derecho", 2));
+
+    cout << "Promedio general: " << listaE33.promedioGeneral() << endl;
+    cout << "Promedio Ingenieria: " << listaE33.promedioPorCarrera("Ingenieria") << endl;
+    cout << "Cantidad Ingenieria: " << listaE33.contarPorCarrera("Ingenieria") << endl;
+    cout << "Cantidad semestre 4: " << listaE33.contarPorSemestre(4) << endl;
+
+    Estudiante* mejorIng = listaE33.mejorEstudiantePorCarrera("Ingenieria");
+    if (mejorIng != nullptr)
+        cout << "Mejor Ingenieria: " << mejorIng->getNombre() << endl;
+
+    ListaEstudiantes* aprobados = listaE33.estudiantesAprobados(70);
+    cout << "Aprobados >= 70: " << aprobados->getContador() << endl;
+
+    listaE33.aplicarCurva(10);
+    cout << "Promedio general con curva: " << listaE33.promedioGeneral() << endl;
+
+    delete aprobados;
 
 
 

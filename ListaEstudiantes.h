@@ -28,6 +28,16 @@ public:
     int contarReprobados(double notaMinima);
     Estudiante* mejorEstudiante();
     void aplicarCurva(double porcentaje);
+
+    double promedioGeneral();
+    double promedioPorCarrera(string carrera);
+    int contarPorCarrera(string carrera);
+    int contarPorSemestre(int semestre);
+    ListaEstudiantes* estudiantesAprobados(double notaMinima);
+    Estudiante* mejorEstudiantePorCarrera(string carrera);
+    int getContador();
+
+
 };
 
 #endif //EJERCICIOSLISTAS_LISTAESTUDIANTES_H

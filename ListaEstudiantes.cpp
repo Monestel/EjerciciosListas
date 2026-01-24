@@ -102,3 +102,83 @@ void ListaEstudiantes::aplicarCurva(double porcentaje) {
         aux = aux->sig;
     }
 }
+
+// Ejercicio 33
+double ListaEstudiantes::promedioGeneral() {
+    if (cabeza == nullptr) return 0;
+    double suma = 0;
+    int cont = 0;
+    Nodo* aux = cabeza;
+    while (aux != nullptr) {
+        suma += aux->estudiante->getPromedio();
+        cont++;
+        aux = aux->sig;
+    }
+    return suma / cont;
+}
+
+double ListaEstudiantes::promedioPorCarrera(string carrera) {
+    double suma = 0;
+    int cont = 0;
+    Nodo* aux = cabeza;
+    while (aux != nullptr) {
+        if (aux->estudiante->getCarrera() == carrera) {
+            suma += aux->estudiante->getPromedio();
+            cont++;
+        }
+        aux = aux->sig;
+    }
+    if (cont == 0) return 0;
+    return suma / cont;
+}
+
+int ListaEstudiantes::contarPorCarrera(string carrera) {
+    int cont = 0;
+    Nodo* aux = cabeza;
+    while (aux != nullptr) {
+        if (aux->estudiante->getCarrera() == carrera)
+            cont++;
+        aux = aux->sig;
+    }
+    return cont;
+}
+
+int ListaEstudiantes::contarPorSemestre(int semestre) {
+    int cont = 0;
+    Nodo* aux = cabeza;
+    while (aux != nullptr) {
+        if (aux->estudiante->getSemestre() == semestre)
+            cont++;
+        aux = aux->sig;
+    }
+    return cont;
+}
+
+ListaEstudiantes* ListaEstudiantes::estudiantesAprobados(double notaMinima) {
+    ListaEstudiantes* nueva = new ListaEstudiantes();
+    Nodo* aux = cabeza;
+    while (aux != nullptr) {
+        if (aux->estudiante->getPromedio() >= notaMinima)
+            nueva->agregarEstudiante(aux->estudiante);
+        aux = aux->sig;
+    }
+    return nueva;
+}
+
+Estudiante* ListaEstudiantes::mejorEstudiantePorCarrera(string carrera) {
+    Nodo* aux = cabeza;
+    Estudiante* mejor = nullptr;
+    while (aux != nullptr) {
+        if (aux->estudiante->getCarrera() == carrera) {
+            if (mejor == nullptr || aux->estudiante->getPromedio() > mejor->getPromedio())
+                mejor = aux->estudiante;
+        }
+        aux = aux->sig;
+    }
+    return mejor;
+}
+
+
+
+
+
